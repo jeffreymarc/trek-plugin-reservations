@@ -27,7 +27,7 @@
     "@types/react-dom": "^18.3.5",
     "prettier": "^3.9.5",
     "tailwindcss": "^4.3.2",
-    "trek-plugin-sdk": "^1.4.1",
+    "trek-plugin-sdk": "^1.7.0",
     "typescript": "^5.7.2"
   }
 }

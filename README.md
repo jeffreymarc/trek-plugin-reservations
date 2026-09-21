@@ -51,6 +51,10 @@ actions also follow that user's existing TREK permissions.
 | `http:outbound:places.googleapis.com` | Optionally search for locations with Google Places when an administrator configures an API key. |
 | `http:outbound:api.transitous.org` | Look up public-transit journeys. |
 
+## Requirements
+
+TREK 3.3 or newer, including TREK 4.x.
+
 ## Setup
 
 After an administrator installs the plugin in TREK, open a trip and select the
@@ -65,8 +69,9 @@ default.
 
 An administrator can configure a Google Places API key to enable Google Places
 search. The key is optional; OpenStreetMap remains available when it is unset.
-Until instance-wide settings are available in the TREK UI, configure it through
-the API:
+
+On TREK 4, set it in the admin plugin settings form. On TREK 3.x, where
+instance-scoped settings have no UI, configure it through the API instead:
 
 ```js
 await fetch('/api/admin/plugins/reservations/config', {
@@ -101,18 +106,19 @@ plugin SDK.
   everything needed to edit or remove links from the `file_links` table.
 
 - **Plugin settings in the TREK interface**  
-  Reservations can optionally use Google Places, but instance-scoped plugin
-  settings cannot currently be managed through the TREK UI. Administrators
-  must configure the API key through the plugin configuration endpoint.
+  On TREK 3.x, instance-scoped plugin settings cannot be managed through the
+  TREK UI, so administrators must configure the Google Places API key through
+  the plugin configuration endpoint. TREK 4 renders the setting in the admin
+  plugin settings form.
 
 - **Access to user preferences**  
   Plugins cannot currently read preferences such as confirmation-code
   blurring or the user's preferred time format.
 
 - **Persisting workspace state**  
-  Filters, grouping, sorting, and the selected view cannot currently be
-  preserved when navigating between trip tabs because plugins do not have
-  access to persistent session state.
+  Filters, grouping, sorting, and the selected view are not preserved when
+  navigating between trip tabs. TREK 3.x exposes no session state to plugins.
+  TREK 4 adds a plugin session API, which this plugin does not use yet.
 
 ## License
 
